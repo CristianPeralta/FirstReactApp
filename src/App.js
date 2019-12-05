@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import lul from './lul.png';
+import Book from './Book/Book';
 import './App.css';
 
 class App extends Component {
@@ -9,6 +10,10 @@ class App extends Component {
         <header className="App-header">
           <img src={lul} className="App-logo" alt="logo" />
           <h1 className="App-title">Hey Guys</h1>
+          <Book title="The Host" price="30"/>
+          <Book title="At First Sight" price="15"/>
+          <Book title="Walking in Zen Sitting in Zen" price="64"/>
+          <Book title="Asterix The Gaul" price="34"/>
         </header>
       </div>
     );
