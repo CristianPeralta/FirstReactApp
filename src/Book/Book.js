@@ -1,6 +1,11 @@
 import React from 'react';
 
 const book = (props) => {
-    return <p>This book called {props.title} cost {props.price}</p>
+    return (
+        <div>
+            <p>This book called {props.title} cost {props.price}</p>
+            <p>{props.children}</p>
+        </div>
+    );
 }
 export default book;

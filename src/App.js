@@ -11,8 +11,8 @@ class App extends Component {
           <img src={lul} className="App-logo" alt="logo" />
           <h1 className="App-title">Hey Guys</h1>
           <Book title="The Host" price="30"/>
-          <Book title="At First Sight" price="15"/>
-          <Book title="Walking in Zen Sitting in Zen" price="64"/>
+          <Book title="At First Sight" price="15"><p>50% Off</p></Book>
+          <Book title="Walking in Zen Sitting in Zen" price="64"><p>25%Off</p></Book>
           <Book title="Asterix The Gaul" price="34"/>
         </header>
       </div>
