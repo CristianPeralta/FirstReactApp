@@ -5,6 +5,7 @@ const book = (props) => {
         <div>
             <p onClick={props.click} >This book called {props.title} cost {props.price}</p>
             <p>{props.children}</p>
+            <input type="text" onChange={props.changed} value={props.title} />
         </div>
     );
 }

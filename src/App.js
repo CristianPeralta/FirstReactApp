@@ -41,6 +41,18 @@ const app = props => {
     })
   };
 
+  
+  const updateTitleHandler = (event) => {
+    setBooksState({
+      books: [
+        { title: "The Host", price: 74 },
+        { title: event.target.value, price: 45 },
+        { title: "Walking in Zen Sitting in Zen", price: 18 },
+        { title: "Asterix The Gaul", price: 69 }
+      ]
+    })
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -54,6 +66,7 @@ const app = props => {
         <Book
           title={booksState.books[1].title}
           price={booksState.books[1].price}
+          changed={updateTitleHandler}
           click={(event => updateBookPrices(event, 10))}>Popular</Book>
         <Book
           title={booksState.books[2].title}
