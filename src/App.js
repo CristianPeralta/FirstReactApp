@@ -53,13 +53,21 @@ const app = props => {
     })
   };
 
+  const style = {
+    backGroundColor: `white`,
+    font: `inherit`,
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer',
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={lul} className="App-logo" alt="logo" />
         <h1 className="App-title">Hey Guys</h1>
-        <button onClick={(event => updateBookPrices(event, 50))} >Change Books Prices</button>
-        <button onClick={resetBookPrices} >Reset Books Prices</button>
+        <button style={style}  onClick={(event => updateBookPrices(event, 50))} >Change Books Prices</button>
+        <button className="button" onClick={resetBookPrices} >Reset Books Prices</button>
         <Book
           title={booksState.books[0].title}
           price={booksState.books[0].price}/>
