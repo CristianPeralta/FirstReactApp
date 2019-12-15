@@ -6,10 +6,10 @@ import './App.css';
 const app = props => {
   const [ booksState, setBooksState ] = useState({
     books: [
-      { title: "The Host", price: 85 },
-      { title: "At First Sight", price: 39 },
-      { title: "Walking in Zen Sitting in Zen", price: 23 },
-      { title: "Asterix The Gaul", price: 74 }
+      { title: "The Host", price: 74 },
+      { title: "At First Sight", price: 45 },
+      { title: "Walking in Zen Sitting in Zen", price: 18 },
+      { title: "Asterix The Gaul", price: 69 }
     ],
   });
   const [ anotherState, setAnotherState ] = useState("Hi im another state");
@@ -17,13 +17,15 @@ const app = props => {
   console.log("booksState", booksState);
   console.log("anotherState", anotherState);
 
-  const updateBookPrices = () => {
+  const updateBookPrices = (event, discount) => {
+    console.log("discount");
+    console.log(discount);
     setBooksState({
       books: [
-        { title: "The Host", price: 74 },
-        { title: "At First Sight", price: 45555 },
-        { title: "Walking in Zen Sitting in Zen", price: 18 },
-        { title: "Asterix The Gaul", price: 69 }
+        { title: "The Host", price: 74 * (1- (discount/100)) },
+        { title: "At First Sight", price: 45 * (1- (discount/100)) },
+        { title: "Walking in Zen Sitting in Zen", price: 18 * (1- (discount/100)) },
+        { title: "Asterix The Gaul", price: 69 * (1- (discount/100)) }
       ]
     })
   };
@@ -31,10 +33,10 @@ const app = props => {
   const resetBookPrices = () => {
     setBooksState({
       books: [
-        { title: "The Host", price: 85 },
-        { title: "At First Sight", price: 39 },
-        { title: "Walking in Zen Sitting in Zen", price: 23 },
-        { title: "Asterix The Gaul", price: 74 }
+        { title: "The Host", price: 74 },
+        { title: "At First Sight", price: 45 },
+        { title: "Walking in Zen Sitting in Zen", price: 18 },
+        { title: "Asterix The Gaul", price: 69 }
       ]
     })
   };
@@ -44,12 +46,21 @@ const app = props => {
       <header className="App-header">
         <img src={lul} className="App-logo" alt="logo" />
         <h1 className="App-title">Hey Guys</h1>
-        <button onClick={updateBookPrices} >Change Books Prices</button>
+        <button onClick={(event => updateBookPrices(event, 50))} >Change Books Prices</button>
         <button onClick={resetBookPrices} >Reset Books Prices</button>
-        <Book title={booksState.books[0].title} price={booksState.books[0].price}/>
-        <Book title={booksState.books[1].title} price={booksState.books[1].price} >50% Off</Book>
-        <Book title={booksState.books[2].title} price={booksState.books[2].price}>25% Off</Book>
-        <Book title={booksState.books[3].title} price={booksState.books[3].price}/>
+        <Book
+          title={booksState.books[0].title}
+          price={booksState.books[0].price}/>
+        <Book
+          title={booksState.books[1].title}
+          price={booksState.books[1].price}
+          click={(event => updateBookPrices(event, 10))}>Popular</Book>
+        <Book
+          title={booksState.books[2].title}
+          price={booksState.books[2].price}>Popular</Book>
+        <Book
+          title={booksState.books[3].title}
+          price={booksState.books[3].price}/>
       </header>
     </div>
   );
