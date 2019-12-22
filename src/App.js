@@ -6,52 +6,45 @@ import './App.css';
 const app = props => {
   const [ booksState, setBooksState ] = useState({
     books: [
-      { title: "The Host", price: 74 },
-      { title: "At First Sight", price: 45 },
-      { title: "Walking in Zen Sitting in Zen", price: 18 },
-      { title: "Asterix The Gaul", price: 69 }
+      { id: 123, title: "The Host", price: 74 },
+      { id: 124, title: "At First Sight", price: 45 },
+      { id: 125, title: "Walking in Zen Sitting in Zen", price: 18 },
+      { id: 126, title: "Asterix The Gaul", price: 69 }
     ],
   });
-  const [ anotherState, setAnotherState ] = useState("Hi im another state");
 
-  console.log("booksState", booksState);
-  console.log("anotherState", anotherState);
+  const [ showBooksState, setShowBooksState ] = useState(false);
 
-  const updateBookPrices = (event, discount) => {
-    console.log("discount");
-    console.log(discount);
-    setBooksState({
-      books: [
-        { title: "The Host", price: 74 * (1- (discount/100)) },
-        { title: "At First Sight", price: 45 * (1- (discount/100)) },
-        { title: "Walking in Zen Sitting in Zen", price: 18 * (1- (discount/100)) },
-        { title: "Asterix The Gaul", price: 69 * (1- (discount/100)) }
-      ]
-    })
+  const updateTitleHandler = (event, id) => {
+    const books = [...booksState.books];
+    const index = books.findIndex(b => (b.id === id));
+    books[index] = {
+      ...books[index],
+      title: event.target.value,
+    };
+    setBooksState({ books });
   };
 
-  const resetBookPrices = () => {
-    setBooksState({
-      books: [
-        { title: "The Host", price: 74 },
-        { title: "At First Sight", price: 45 },
-        { title: "Walking in Zen Sitting in Zen", price: 18 },
-        { title: "Asterix The Gaul", price: 69 }
-      ]
-    })
+  const toggleBooksGandler = () => {
+    setShowBooksState(!showBooksState);
   };
 
-  
-  const updateTitleHandler = (event) => {
-    setBooksState({
-      books: [
-        { title: "The Host", price: 74 },
-        { title: event.target.value, price: 45 },
-        { title: "Walking in Zen Sitting in Zen", price: 18 },
-        { title: "Asterix The Gaul", price: 69 }
-      ]
-    })
+  const deleteBookHandler = (bookIndex) => {
+    const booksUpdated = [...booksState.books].splice(bookIndex, 1);
+    setBooksState({ books: booksUpdated });
   };
+
+  let books = null;
+  if (showBooksState) {
+    books = booksState.books.map((b, index) => {
+      return <Book
+        key={b.id}
+        title={b.title}
+        price={b.price}
+        child={() => deleteBookHandler(index)}
+        changed={(event) => updateTitleHandler(event, b.id)}/>
+    });
+  }
 
   const style = {
     backGroundColor: `white`,
@@ -66,22 +59,8 @@ const app = props => {
       <header className="App-header">
         <img src={lul} className="App-logo" alt="logo" />
         <h1 className="App-title">Hey Guys</h1>
-        <button style={style}  onClick={(event => updateBookPrices(event, 50))} >Change Books Prices</button>
-        <button className="button" onClick={resetBookPrices} >Reset Books Prices</button>
-        <Book
-          title={booksState.books[0].title}
-          price={booksState.books[0].price}/>
-        <Book
-          title={booksState.books[1].title}
-          price={booksState.books[1].price}
-          changed={updateTitleHandler}
-          click={(event => updateBookPrices(event, 10))}>Popular</Book>
-        <Book
-          title={booksState.books[2].title}
-          price={booksState.books[2].price}>Popular</Book>
-        <Book
-          title={booksState.books[3].title}
-          price={booksState.books[3].price}/>
+        <button style={style} onClick={toggleBooksGandler} >Show Books</button>
+        { books }
       </header>
     </div>
   );
