@@ -35,6 +35,15 @@ const app = props => {
     setBooksState({ books: booksUpdated });
   };
 
+  const style = {
+    backgroundColor: `green`,
+    color: 'white',
+    font: `inherit`,
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer',
+  };
+
   let books = null;
   if (showBooksState) {
     books = booksState.books.map((b, index) => {
@@ -45,21 +54,21 @@ const app = props => {
         click={() => deleteBookHandler(index)}
         changed={(event) => updateTitleHandler(event, b.id)}/>
     });
+    style.backgroundColor = 'red';
   }
 
-  const style = {
-    backGroundColor: `white`,
-    font: `inherit`,
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer',
-  };
+  const classes = [];
+  if (booksState.books.length >= 2) {
+    classes.push('green');
+  } else if (booksState.books.length < 2) {
+    classes.push('bold');
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="">
         <img src={lul} className="App-logo" alt="logo" />
-        <h1 className="App-title">Hey Guys</h1>
+        <h1 className={classes.join(' ')}>Hey Guys</h1>
         <button style={style} onClick={toggleBooksGandler} >Show Books</button>
         { books }
       </header>
