@@ -30,7 +30,8 @@ const app = props => {
   };
 
   const deleteBookHandler = (bookIndex) => {
-    const booksUpdated = [...booksState.books].splice(bookIndex, 1);
+    const booksUpdated = [...booksState.books];
+    booksUpdated.splice(bookIndex, 1);
     setBooksState({ books: booksUpdated });
   };
 
@@ -41,7 +42,7 @@ const app = props => {
         key={b.id}
         title={b.title}
         price={b.price}
-        child={() => deleteBookHandler(index)}
+        click={() => deleteBookHandler(index)}
         changed={(event) => updateTitleHandler(event, b.id)}/>
     });
   }
