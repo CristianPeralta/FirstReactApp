@@ -1,5 +1,4 @@
 import React from 'react';
-import Radium from 'radium';
 import './Book.css';
 
 const book = (props) => {
@@ -16,4 +15,4 @@ const book = (props) => {
         </div>
     );
 }
-export default Radium(book);
+export default book;

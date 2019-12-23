@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Radium, { StyleRoot } from 'radium';
 import lul from './lul.png';
 import Book from './Book/Book';
 import './App.css';
@@ -74,17 +73,15 @@ const app = props => {
   }
 
   return (
-    <StyleRoot>
-      <div className="App">
-        <header className="">
-          <img src={lul} className="App-logo" alt="logo" />
-          <h1 className={classes.join(' ')}>Hey Guys</h1>
-          <button style={style} onClick={toggleBooksGandler} >Show Books</button>
+    <div className="App">
+      <header className="">
+        <img src={lul} className="App-logo" alt="logo" />
+        <h1 className={classes.join(' ')}>Hey Guys</h1>
+        <button style={style} onClick={toggleBooksGandler} >Show Books</button>
           { books }
-        </header>
-      </div>
-    </StyleRoot>
+      </header>
+    </div>
   );
 }
 
-export default Radium(app);
+export default app;
