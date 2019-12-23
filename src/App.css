@@ -6,15 +6,6 @@
   height: 80px;
 }
 
-.button {
-  background-color: royalblue;
-  font: inherit;
-  border: 1px solid blueviolet;
-  padding: 8px;
-  cursor: pointer;
-  color: white;
-}
-
 .red {
   color: red;
 }

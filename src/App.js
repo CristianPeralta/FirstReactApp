@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import lul from './lul.png';
 import Book from './Book/Book';
 import './App.css';
@@ -74,14 +74,16 @@ const app = props => {
   }
 
   return (
-    <div className="App">
-      <header className="">
-        <img src={lul} className="App-logo" alt="logo" />
-        <h1 className={classes.join(' ')}>Hey Guys</h1>
-        <button style={style} onClick={toggleBooksGandler} >Show Books</button>
-        { books }
-      </header>
-    </div>
+    <StyleRoot>
+      <div className="App">
+        <header className="">
+          <img src={lul} className="App-logo" alt="logo" />
+          <h1 className={classes.join(' ')}>Hey Guys</h1>
+          <button style={style} onClick={toggleBooksGandler} >Show Books</button>
+          { books }
+        </header>
+      </div>
+    </StyleRoot>
   );
 }
 
