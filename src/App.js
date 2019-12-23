@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import lul from './lul.png';
 import Book from './Book/Book';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import classes from './App.css';
 
 const app = props => {
@@ -40,12 +41,14 @@ const app = props => {
   let books = null;
   if (showBooksState) {
     books = booksState.books.map((b, index) => {
-      return <Book
-        key={b.id}
-        title={b.title}
-        price={b.price}
-        click={() => deleteBookHandler(index)}
-        changed={(event) => updateTitleHandler(event, b.id)}/>
+      return <ErrorBoundary key={b.id}>
+        <Book
+          id={b.id}
+          title={b.title}
+          price={b.price}
+          click={() => deleteBookHandler(index)}
+          changed={(event) => updateTitleHandler(event, b.id)}/>
+      </ErrorBoundary>
     });
     /* style.backgroundColor = 'red';
     style[':hover'] = {
