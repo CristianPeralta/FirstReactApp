@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Radium from 'radium';
 import lul from './lul.png';
 import Book from './Book/Book';
 import './App.css';
@@ -42,6 +43,10 @@ const app = props => {
     border: '1px solid blue',
     padding: '8px',
     cursor: 'pointer',
+    ':hover': {
+      backgroundColor: 'lightgreen',
+      color: 'black'
+    }
   };
 
   let books = null;
@@ -55,6 +60,10 @@ const app = props => {
         changed={(event) => updateTitleHandler(event, b.id)}/>
     });
     style.backgroundColor = 'red';
+    style[':hover'] = {
+      backgroundColor: 'salmon',
+      color: 'black'
+    };
   }
 
   const classes = [];
@@ -76,4 +85,4 @@ const app = props => {
   );
 }
 
-export default app;
+export default Radium(app);
