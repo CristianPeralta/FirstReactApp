@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import lul from './lul.png';
 import Book from './Book/Book';
-import './App.css';
+import classes from './App.css';
 
 const app = props => {
   const [ booksState, setBooksState ] = useState({
@@ -35,18 +35,7 @@ const app = props => {
     setBooksState({ books: booksUpdated });
   };
 
-  const style = {
-    backgroundColor: `green`,
-    color: 'white',
-    font: `inherit`,
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer',
-    ':hover': {
-      backgroundColor: 'lightgreen',
-      color: 'black'
-    }
-  };
+  let btnClass = '';
 
   let books = null;
   if (showBooksState) {
@@ -58,26 +47,27 @@ const app = props => {
         click={() => deleteBookHandler(index)}
         changed={(event) => updateTitleHandler(event, b.id)}/>
     });
-    style.backgroundColor = 'red';
+    /* style.backgroundColor = 'red';
     style[':hover'] = {
       backgroundColor: 'salmon',
       color: 'black'
-    };
+    }; */
+    btnClass = classes.Red;
   }
 
-  const classes = [];
+  const assignedClasses = [];
   if (booksState.books.length >= 2) {
-    classes.push('green');
+    assignedClasses.push(assignedClasses.green);
   } else if (booksState.books.length < 2) {
-    classes.push('bold');
+    assignedClasses.push(assignedClasses.bold);
   }
 
   return (
-    <div className="App">
+    <div className={classes.App}>
       <header className="">
-        <img src={lul} className="App-logo" alt="logo" />
-        <h1 className={classes.join(' ')}>Hey Guys</h1>
-        <button style={style} onClick={toggleBooksGandler} >Show Books</button>
+        <img src={lul} className={classes.logo} alt="logo" />
+        <h1 className={assignedClasses.join(' ')}>Hey Guys</h1>
+        <button className={btnClass} onClick={toggleBooksGandler} >Show Books</button>
           { books }
       </header>
     </div>
