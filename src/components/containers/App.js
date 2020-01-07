@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import lul from '../../assets/lul.png';
-import Book from '../Book/Book';
+import Book from '../Books/Book/Book';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import classes from './App.css';
 
