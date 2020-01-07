@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import lul from './lul.png';
-import Book from './Book/Book';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import lul from '../../assets/lul.png';
+import Book from '../Book/Book';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import classes from './App.css';
 
 const app = props => {
