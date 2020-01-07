@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import lul from './lul.png';
-import Book from './Book/Book';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import lul from '../../assets/lul.png';
+import Books from '../Books/Books';
+import Cockpit from '../Cockpit/Cockpi';
 import classes from './App.css';
 
 const app = props => {
@@ -36,26 +36,12 @@ const app = props => {
     setBooksState({ books: booksUpdated });
   };
 
-  let btnClass = '';
-
   let books = null;
   if (showBooksState) {
-    books = booksState.books.map((b, index) => {
-      return <ErrorBoundary key={b.id}>
-        <Book
-          id={b.id}
-          title={b.title}
-          price={b.price}
-          click={() => deleteBookHandler(index)}
-          changed={(event) => updateTitleHandler(event, b.id)}/>
-      </ErrorBoundary>
-    });
-    /* style.backgroundColor = 'red';
-    style[':hover'] = {
-      backgroundColor: 'salmon',
-      color: 'black'
-    }; */
-    btnClass = classes.Red;
+    books = <Books
+      books={booksState.books}
+      clicked={deleteBookHandler}
+      changed={updateTitleHandler}/>
   }
 
   const assignedClasses = [];
@@ -69,9 +55,12 @@ const app = props => {
     <div className={classes.App}>
       <header className="">
         <img src={lul} className={classes.logo} alt="logo" />
-        <h1 className={assignedClasses.join(' ')}>Hey Guys</h1>
-        <button className={btnClass} onClick={toggleBooksGandler} >Show Books</button>
-          { books }
+        <Cockpit
+          showBooks={showBooksState}
+          books={booksState.books}
+          clicked={toggleBooksGandler}
+        />
+        { books }
       </header>
     </div>
   );
