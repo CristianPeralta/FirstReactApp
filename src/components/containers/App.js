@@ -1,69 +1,70 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import lul from '../../assets/lul.png';
-import Books from '../Books/Books';
+import Books from '../Books/books';
 import Cockpit from '../Cockpit/Cockpi';
 import classes from './App.css';
 
-const app = props => {
-  const [ booksState, setBooksState ] = useState({
+class App extends Component {
+  state = {
     books: [
       { id: 123, title: "The Host", price: 74 },
       { id: 124, title: "At First Sight", price: 45 },
       { id: 125, title: "Walking in Zen Sitting in Zen", price: 18 },
       { id: 126, title: "Asterix The Gaul", price: 69 }
     ],
-  });
-
-  const [ showBooksState, setShowBooksState ] = useState(false);
-
-  const updateTitleHandler = (event, id) => {
-    const books = [...booksState.books];
+    showBooks: false
+  };
+  updateTitleHandler = (event, id) => {
+    const books = [...this.state.books];
     const index = books.findIndex(b => (b.id === id));
     books[index] = {
       ...books[index],
       title: event.target.value,
     };
-    setBooksState({ books });
+    this.setState({ books });
   };
 
-  const toggleBooksGandler = () => {
-    setShowBooksState(!showBooksState);
+  toggleBooksGandler = () => {
+    const doesShow = this.state.showBooks;
+    this.setState({ showBooks: !doesShow });
   };
 
-  const deleteBookHandler = (bookIndex) => {
-    const booksUpdated = [...booksState.books];
+  deleteBookHandler = (bookIndex) => {
+    const booksUpdated = [...this.state.books];
     booksUpdated.splice(bookIndex, 1);
-    setBooksState({ books: booksUpdated });
+    this.setState({ books: booksUpdated });
   };
 
-  let books = null;
-  if (showBooksState) {
-    books = <Books
-      books={booksState.books}
-      clicked={deleteBookHandler}
-      changed={updateTitleHandler}/>
-  }
+  render() {
+    let books = null;
+    if (this.state.showBooks) {
+      books = <Books
+        books={this.state.books}
+        clicked={this.deleteBookHandler}
+        changed={this.updateTitleHandler}/>
+    }
+  
+    const assignedClasses = [];
+    if (this.state.books.length >= 2) {
+      assignedClasses.push(assignedClasses.green);
+    } else if (this.state.books.length < 2) {
+      assignedClasses.push(assignedClasses.bold);
+    }
 
-  const assignedClasses = [];
-  if (booksState.books.length >= 2) {
-    assignedClasses.push(assignedClasses.green);
-  } else if (booksState.books.length < 2) {
-    assignedClasses.push(assignedClasses.bold);
+    return (
+      <div className={classes.App}>
+        <header className="">
+          <img src={lul} className={classes.logo} alt="logo" />
+          <Cockpit
+            showBooks={this.state.showBooks}
+            books={this.state.books}
+            clicked={this.toggleBooksGandler}
+          />
+          { books }
+        </header>
+      </div>
+    );
   }
-
-  return (
-    <div className={classes.App}>
-      <header className="">
-        <img src={lul} className={classes.logo} alt="logo" />
-        <Cockpit
-          showBooks={showBooksState}
-          books={booksState.books}
-          clicked={toggleBooksGandler}
-        />
-        { books }
-      </header>
-    </div>
-  );
 }
 
-export default app;
+export default App;
