@@ -3,6 +3,7 @@ import Book from './Book/Book';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 const books = (props) => props.books.map((b, index) => {
+    console.log("[Books.js] rendering")
     return <ErrorBoundary key={b.id}>
         <Book
             id={b.id}

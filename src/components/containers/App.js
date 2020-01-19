@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import lul from '../../assets/lul.png';
-import Books from '../Books/books';
-import Cockpit from '../Cockpit/Cockpi';
+import Books from '../Books/Books';
+import Cockpit from '../Cockpit/Cockpit';
 import classes from './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     books: [
       { id: 123, title: "The Host", price: 74 },
@@ -14,6 +19,16 @@ class App extends Component {
     ],
     showBooks: false
   };
+
+  static getDerivedStateFromProps (props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount");
+  }
+
   updateTitleHandler = (event, id) => {
     const books = [...this.state.books];
     const index = books.findIndex(b => (b.id === id));
@@ -36,6 +51,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render")
     let books = null;
     if (this.state.showBooks) {
       books = <Books
@@ -56,6 +72,7 @@ class App extends Component {
         <header className="">
           <img src={lul} className={classes.logo} alt="logo" />
           <Cockpit
+            appTitle={this.props.appTitle}
             showBooks={this.state.showBooks}
             books={this.state.books}
             clicked={this.toggleBooksGandler}
