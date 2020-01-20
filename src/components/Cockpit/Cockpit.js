@@ -8,7 +8,19 @@ const cockpit = (props) => {
       setTimeout(() => {
         alert("Saved data to cloud!");
       }, 1000);
+
+      return () => {
+        console.log("[Cockpit.js] cleanup work in useEffect");
+      }
     }, []);
+
+    useEffect(() => {
+      console.log("[cockpit.js] 2nd useEffect");
+      // Http request (for example)
+      return () => {
+        console.log("[Cockpit.js] 2nd cleanup work in useEffect");
+      }
+    });
 
     let btnClass = '';
     if (props.showBooks) {
