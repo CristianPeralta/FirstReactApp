@@ -5,7 +5,11 @@ class Books extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("[Boooks.js] shouldComponentUpdate");
-        return true;
+        if (nextProps.books !== this.props.books ) {
+            return true;
+        } else { 
+            return false;
+        }
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
