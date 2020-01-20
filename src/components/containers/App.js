@@ -29,6 +29,15 @@ class App extends Component {
     console.log("[App.js] componentDidMount");
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("[App.js] componentDidUpdate");
+  }
+
   updateTitleHandler = (event, id) => {
     const books = [...this.state.books];
     const index = books.findIndex(b => (b.id === id));
