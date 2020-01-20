@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Book from './Book/Book';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
-const books = (props) => props.books.map((b, index) => {
-    console.log("[Books.js] rendering")
-    return <ErrorBoundary key={b.id}>
-        <Book
+class Books extends Component {
+    render() {
+        console.log("[Books.js] rendering");
+        return this.props.books.map((b, index) => <Book
             id={b.id}
+            key={b.id}
             title={b.title}
             price={b.price}
-            click={() => props.clicked(index)}
-            changed={(event) => props.changed(event, b.id)}/>
-    </ErrorBoundary>
-});
-export default books;
+            click={() => this.props.clicked(index)}
+            changed={(event) => this.props.changed(event, b.id)}/>);
+    }
+}
+
+export default Books;
