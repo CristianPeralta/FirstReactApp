@@ -17,7 +17,8 @@ class App extends Component {
       { id: 125, title: "Walking in Zen Sitting in Zen", price: 18 },
       { id: 126, title: "Asterix The Gaul", price: 69 }
     ],
-    showBooks: false
+    showBooks: false,
+    showCockpit: true
   };
 
   static getDerivedStateFromProps (props, state) {
@@ -79,13 +80,16 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <header className="">
+          <button onClick={() => (this.setState({ showCockpit: false }))}>Remove Cockpit</button>
+          <br></br>
           <img src={lul} className={classes.logo} alt="logo" />
-          <Cockpit
+
+          {this.state.showCockpit ? <Cockpit
             appTitle={this.props.appTitle}
             showBooks={this.state.showBooks}
             books={this.state.books}
             clicked={this.toggleBooksGandler}
-          />
+          /> : null}
           { books }
         </header>
       </div>
