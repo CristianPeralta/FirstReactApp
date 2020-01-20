@@ -18,6 +18,10 @@ class Books extends Component {
         console.log(Snapshot);
     }
 
+    componentWillUnmount() {
+        console.log("[Books.js] componentWillUnmount");
+    }
+
     render() {
         console.log("[Books.js] rendering");
         return this.props.books.map((b, index) => <Book
