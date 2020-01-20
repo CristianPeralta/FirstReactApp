@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Book.css';
 
-const book = (props) => {
-    console.log("[Book.js] rendering")
-    return (
-        <div className={classes.Book}>
-            <p onClick={props.click} >This book called {props.title} cost {props.price}</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.title} />
-        </div>
-    );
+class Book extends Component {
+    render() {
+        console.log("[Book.js] rendering")
+        return (
+            <div className={classes.Book}>
+                <p onClick={this.props.click} >This book called {this.props.title} cost {this.props.price}</p>
+                <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.title} />
+            </div>
+        );
+    }
 }
-export default book;
+
+export default Book;
