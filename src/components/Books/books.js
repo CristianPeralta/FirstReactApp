@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import Book from './Book/Book';
 
 class Books extends Component {
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("[Boooks.js] shouldComponentUpdate");
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("[Books.js] getSnapshotBeforeUpdate");
+        return { message: "Snapshot"};
+    }
+
+    componentDidUpdate(prevProps, prevState, Snapshot) {
+        console.log("[Books.js] componentDidUpdate");
+        console.log(Snapshot);
+    }
+
     render() {
         console.log("[Books.js] rendering");
         return this.props.books.map((b, index) => <Book
