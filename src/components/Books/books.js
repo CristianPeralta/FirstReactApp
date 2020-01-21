@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Book from './Book/Book';
 
-class Books extends Component {
+class Books extends PureComponent {
 
-    shouldComponentUpdate(nextProps, nextState) {
+    /* shouldComponentUpdate(nextProps, nextState) {
         console.log("[Boooks.js] shouldComponentUpdate");
         if (nextProps.books !== this.props.books ) {
             return true;
         } else { 
             return false;
         }
-    }
+    } */
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log("[Books.js] getSnapshotBeforeUpdate");
