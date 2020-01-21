@@ -20,7 +20,8 @@ class App extends Component {
       { id: 126, title: "Asterix The Gaul", price: 69 }
     ],
     showBooks: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   };
 
   static getDerivedStateFromProps (props, state) {
@@ -48,7 +49,9 @@ class App extends Component {
       ...books[index],
       title: event.target.value,
     };
-    this.setState({ books });
+    this.setState((prevState, props) => {
+      return { books, changeCounter: prevState.changeCounter + 1 };
+    });
   };
 
   toggleBooksGandler = () => {
