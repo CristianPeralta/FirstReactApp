@@ -5,9 +5,13 @@ import withClass from "../../hoc/withClass";
 import PropTypes from "prop-types";
 
 class Book extends Component {
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
     componentDidMount() {
-        this.inputElement.focus();
-    };
+        this.inputElementRef.current.focus();
+    }
     render() {
         console.log("[Book.js] rendering");
         return (
@@ -16,7 +20,7 @@ class Book extends Component {
                 <p>{this.props.children}</p>
                 <input
                     type="text"
-                    ref={(inputEl) => { this.inputElement = inputEl}}
+                    ref={this.inputElementRef}
                     onChange={this.props.changed}
                     value={this.props.title}
                 />
