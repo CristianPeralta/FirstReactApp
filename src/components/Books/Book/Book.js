@@ -16,6 +16,7 @@ class Book extends Component {
         console.log("[Book.js] rendering");
         return (
             <Aux>
+                {this.props.isAuth ? <p>Authenticated!</p> : <p>Log in please</p>}
                 <p onClick={this.props.click} >This book called {this.props.title} cost {this.props.price}</p>
                 <p>{this.props.children}</p>
                 <input
@@ -34,6 +35,7 @@ Book.propTypes = {
     changed: PropTypes.func,
     title: PropTypes.string,
     price: PropTypes.number,
+    isAuth: PropTypes.bool
 };
 
 export default withClass(Book, classes.Book);

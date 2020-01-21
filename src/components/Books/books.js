@@ -28,11 +28,13 @@ class Books extends PureComponent {
 
     render() {
         console.log("[Books.js] rendering");
+        console.log("this.props.isAuthenticated", this.props.isAuthenticated)
         return this.props.books.map((b, index) => <Book
             id={b.id}
             key={b.id}
             title={b.title}
             price={b.price}
+            isAuth={this.props.isAuthenticated}
             click={() => this.props.clicked(index)}
             changed={(event) => this.props.changed(event, b.id)}/>);
     }

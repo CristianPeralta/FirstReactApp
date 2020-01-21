@@ -21,7 +21,8 @@ class App extends Component {
     ],
     showBooks: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   };
 
   static getDerivedStateFromProps (props, state) {
@@ -41,6 +42,10 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     console.log("[App.js] componentDidUpdate");
   }
+
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  };
 
   updateTitleHandler = (event, id) => {
     const books = [...this.state.books];
@@ -71,6 +76,7 @@ class App extends Component {
     if (this.state.showBooks) {
       books = <Books
         books={this.state.books}
+        isAuthenticated={this.state.authenticated}
         clicked={this.deleteBookHandler}
         changed={this.updateTitleHandler}/>
     }
@@ -94,6 +100,7 @@ class App extends Component {
             showBooks={this.state.showBooks}
             booksLength={this.state.books.length}
             clicked={this.toggleBooksGandler}
+            login={this.loginHandler}
           /> : null}
           { books }
         </header>
