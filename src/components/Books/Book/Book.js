@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Book.css';
 import Aux from "../../hoc/Auxiliary";
 import withClass from "../../hoc/withClass";
+import PropTypes from "prop-types";
 
 class Book extends Component {
     render() {
@@ -15,5 +16,12 @@ class Book extends Component {
         );
     }
 }
+
+Book.propTypes = {
+    click: PropTypes.func,
+    changed: PropTypes.func,
+    title: PropTypes.string,
+    price: PropTypes.number,
+};
 
 export default withClass(Book, classes.Book);

@@ -14,7 +14,7 @@ class App extends Component {
 
   state = {
     books: [
-      { id: 123, title: "The Host", price: 74 },
+      { id: 123, title: "The Host", price: 74.99 },
       { id: 124, title: "At First Sight", price: 45 },
       { id: 125, title: "Walking in Zen Sitting in Zen", price: 18 },
       { id: 126, title: "Asterix The Gaul", price: 69 }
