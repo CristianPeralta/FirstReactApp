@@ -77,7 +77,6 @@ class App extends Component {
     if (this.state.showBooks) {
       books = <Books
         books={this.state.books}
-        isAuthenticated={this.state.authenticated}
         clicked={this.deleteBookHandler}
         changed={this.updateTitleHandler}/>
     }
@@ -107,7 +106,6 @@ class App extends Component {
               showBooks={this.state.showBooks}
               booksLength={this.state.books.length}
               clicked={this.toggleBooksGandler}
-              login={this.loginHandler}
             /> : null}
             { books }
           </AuthContext.Provider>

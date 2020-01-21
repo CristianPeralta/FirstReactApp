@@ -34,7 +34,6 @@ class Books extends PureComponent {
             key={b.id}
             title={b.title}
             price={b.price}
-            isAuth={this.props.isAuthenticated}
             click={() => this.props.clicked(index)}
             changed={(event) => this.props.changed(event, b.id)}/>);
     }

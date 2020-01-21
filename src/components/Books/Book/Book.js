@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Book.css';
 import Aux from "../../hoc/Auxiliary";
 import withClass from "../../hoc/withClass";
+import AuthContext from "../../context/auth-context";
 import PropTypes from "prop-types";
 
 class Book extends Component {
@@ -16,7 +17,9 @@ class Book extends Component {
         console.log("[Book.js] rendering");
         return (
             <Aux>
-                {this.props.isAuth ? <p>Authenticated!</p> : <p>Log in please</p>}
+                <AuthContext.Consumer>
+                    {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Log in please</p>}
+                </AuthContext.Consumer>
                 <p onClick={this.props.click} >This book called {this.props.title} cost {this.props.price}</p>
                 <p>{this.props.children}</p>
                 <input
