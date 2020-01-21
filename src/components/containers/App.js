@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import lul from '../../assets/lul.png';
 import Books from '../Books/Books';
 import Cockpit from '../Cockpit/Cockpit';
+import WithClass from "../hoc/WithClass";
 import classes from './App.css';
 
 class App extends Component {
@@ -78,7 +79,7 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <header className="">
           <button onClick={() => (this.setState({ showCockpit: false }))}>Remove Cockpit</button>
           <br></br>
@@ -92,7 +93,7 @@ class App extends Component {
           /> : null}
           { books }
         </header>
-      </div>
+      </WithClass>
     );
   }
 }
