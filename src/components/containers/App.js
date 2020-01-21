@@ -4,6 +4,7 @@ import Books from '../Books/Books';
 import Cockpit from '../Cockpit/Cockpit';
 import Aux from "../hoc/Auxiliary";
 import withClass from "../hoc/withClass";
+import AuthContext from "../context/auth-context";
 import classes from './App.css';
 
 class App extends Component {
@@ -95,14 +96,21 @@ class App extends Component {
           <br></br>
           <img src={lul} className={classes.logo} alt="logo" />
 
-          {this.state.showCockpit ? <Cockpit
-            appTitle={this.props.appTitle}
-            showBooks={this.state.showBooks}
-            booksLength={this.state.books.length}
-            clicked={this.toggleBooksGandler}
-            login={this.loginHandler}
-          /> : null}
-          { books }
+          <AuthContext.Provider
+            value={{
+              authenticated: this.state.authenticated,
+              login: this.loginHandler
+              }}
+          >
+            {this.state.showCockpit ? <Cockpit
+              appTitle={this.props.appTitle}
+              showBooks={this.state.showBooks}
+              booksLength={this.state.books.length}
+              clicked={this.toggleBooksGandler}
+              login={this.loginHandler}
+            /> : null}
+            { books }
+          </AuthContext.Provider>
         </header>
       </Aux>
     );
