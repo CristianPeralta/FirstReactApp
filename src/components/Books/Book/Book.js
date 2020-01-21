@@ -10,16 +10,18 @@ class Book extends Component {
         super(props);
         this.inputElementRef = React.createRef();
     }
+
+    static contextType = AuthContext;
+
     componentDidMount() {
         this.inputElementRef.current.focus();
+        console.log(this.context.authenticated);
     }
     render() {
         console.log("[Book.js] rendering");
         return (
             <Aux>
-                <AuthContext.Consumer>
-                    {(context) => context.authenticated ? <p>Authenticated!</p> : <p>Log in please</p>}
-                </AuthContext.Consumer>
+                {this.context.authenticated ? (<p>Authenticated!</p>) : (<p>Log in please</p>)}
                 <p onClick={this.props.click} >This book called {this.props.title} cost {this.props.price}</p>
                 <p>{this.props.children}</p>
                 <input
